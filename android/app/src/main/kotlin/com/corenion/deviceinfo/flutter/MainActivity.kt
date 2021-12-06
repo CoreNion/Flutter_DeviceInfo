@@ -1,4 +1,4 @@
-package com.example.flutter_deviceinfo
+package com.corenion.deviceinfo.flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
