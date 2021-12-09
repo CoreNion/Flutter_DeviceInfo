@@ -1,7 +1,7 @@
 # "Flutter based" DeviceInfo
 このプロジェクトは、**[DeviceInfo](https://github.com/CoreNion/DeviceInfo)をFlutterで書き直す**プロジェクトです！
 
-## 現在開発中...
+## [現在開発中](https://github.com/CoreNion/Flutter_DeviceInfo/projects)...
 
 <br>
 <br>
