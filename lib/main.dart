@@ -30,15 +30,221 @@ class _MyHomePageState extends State<MyHomePage> {
   Text _barTitle = const Text("Overview");
 
   List pages = [
-    // Overview
+    /* Overview */
     <Widget>[
-      const Text("Index:0"),
-      const Text("Index:0"),
+      // ModelName
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Model Name",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // Model Number
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Model Number",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // OS Version
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "OS Version",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // Resolution
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Resolution",
+            style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.left,
+          ),
+          // Width
+          Text(
+            "Width Size",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )),
+          // Height
+          Text(
+            "Height Size",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // Board Name
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Board Name",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // Kernel Version
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Kernel Version",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
     ],
-    // SoC Infomation
+
+    /* SoC Infomation */
     <Widget>[
-      const Text("Index:1"),
-      const Text("Index:1"),
+      // CPU Name
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "CPU Name",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      //CPU Arch
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "CPU Architecture",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // CPU Cores
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "CPU Cores",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // Chip ID
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Chip ID",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // Total Memory
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "Total Memory",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
+      // GPU Name
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            "GPU Name",
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Text(
+                "Dummy",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ))
+        ],
+      ),
     ],
   ];
 
@@ -66,11 +272,11 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: _barTitle,
       ),
-      body: Center(
-          child: Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: pages[_selectedIndex],
-      )),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
