@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'getinfo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,113 +36,120 @@ class _MyHomePageState extends State<MyHomePage> {
       // ModelName
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Model Name",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.modelName(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // Model Number
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Model Number",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.modelNumber(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // OS Version
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "OS Version",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.osVersion(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // Resolution
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Resolution",
             style: TextStyle(fontSize: 20),
             textAlign: TextAlign.left,
           ),
           // Width
-          Text(
+          const Text(
             "Width Size",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.widthResolution(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               )),
           // Height
-          Text(
+          const Text(
             "Height Size",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.heightResolution(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // Board Name
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Board Name",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.boardName(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // Kernel Version
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Kernel Version",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.kernelVersion(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
@@ -152,96 +160,102 @@ class _MyHomePageState extends State<MyHomePage> {
       // CPU Name
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "CPU Name",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.cpuName(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       //CPU Arch
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "CPU Architecture",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.cpuArch(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // CPU Cores
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "CPU Cores",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.cpuCores(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // Chip ID
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Chip ID",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.chipID(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // Total Memory
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "Total Memory",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.totalMemoryMB(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
       // GPU Name
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          Text(
+        children: <Widget>[
+          const Text(
             "GPU Name",
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30),
               child: Text(
-                "Dummy",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                GetDeviceInfo.gpuName(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ))
         ],
       ),
