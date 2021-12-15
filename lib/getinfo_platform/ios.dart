@@ -5,15 +5,25 @@ import 'package:propertylistserialization/propertylistserialization.dart';
 
 class GetiDeviceInfo {
   static String modelName() {
-    return chipID() + " Device";
+    // 仮 tentative
+    return _getMGCopyAnswerValue("DeviceName");
   }
 
   static String modelNumber() {
-    return "Model Number Dummy";
+    return _getMGCopyAnswerValue("HWModelStr") +
+        " (" +
+        _getMGCopyAnswerValue("ModelNumber") +
+        ")";
   }
 
   static String osVersion() {
-    return "OS Version Dummy";
+    if (_getMGCopyAnswerValue("DeviceClass") == "iPhone") {
+      return "iOS " + _getMGCopyAnswerValue("ProductVersion");
+    } else if (_getMGCopyAnswerValue("DeviceClass") == "iPad") {
+      return "iPadOS " + _getMGCopyAnswerValue("ProductVersion");
+    } else {
+      return _getMGCopyAnswerValue("ProductVersion");
+    }
   }
 
   static String widthResolution() {
@@ -37,7 +47,7 @@ class GetiDeviceInfo {
   }
 
   static String cpuArch() {
-    return "CPU Arch Dummy";
+    return _getMGCopyAnswerValue("CPUArchitecture");
   }
 
   static String cpuCores() {
