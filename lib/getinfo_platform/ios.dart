@@ -56,6 +56,7 @@ class GetiDeviceInfo {
     return "GPU Name Dummy";
   }
 
+  /// Functions for handling MGCopyAnswer with dart。
   static String _getMGCopyAnswerValue(String property) {
     // String to C String
     Pointer<Utf8> hardwarePlatform = property.toNativeUtf8();
@@ -74,6 +75,14 @@ class GetiDeviceInfo {
         as String;
   }
 
+  /// Get more detailed information value about the device from private library.
+  ///
+  /// Original(ObjC) Declaration:
+  /// ```objective-c
+  /// CFPropertyListRef MGCopyAnswer(CFStringRef property);
+  /// ```
+  ///
+  /// Header(Property list is here): https://github.com/hirakujira/CPU-Identifier/blob/master/CPU%20test/MobileGestalt.h
   static Pointer<IntPtr> _MGCopyAnswer(Pointer<IntPtr> property) {
     String dylibPath = "/usr/lib/libMobileGestalt.dylib";
     final libMobileGestalt = DynamicLibrary.open(dylibPath);
@@ -85,6 +94,14 @@ class GetiDeviceInfo {
     return mgCopyAnswer(property);
   }
 
+  /// Creates an immutable string(CFString) from a C string.
+  ///
+  /// Original(ObjC) Declaration:
+  /// ```objective-c
+  /// CFStringRef CFStringCreateWithCString(CFAllocatorRef alloc, const char *cStr, CFStringEncoding encoding);
+  /// ```
+  ///
+  /// More info: https://developer.apple.com/documentation/corefoundation/1542942-cfstringcreatewithcstring?language=objc
   static Pointer<IntPtr> _CFStringCreateWithCString(
       Pointer<Utf8> cStr, int count) {
     String cfPath =
@@ -99,6 +116,14 @@ class GetiDeviceInfo {
     return cFStringCreateWithCString(nullptr, cStr, count);
   }
 
+  /// Returns a CFData object containing a serialized representation of a given property list in a specified format.
+  ///
+  /// Original(ObjC) Declaration:
+  /// ```objective-c
+  /// CFDataRef CFPropertyListCreateData(CFAllocatorRef allocator, CFPropertyListRef propertyList, CFPropertyListFormat format, CFOptionFlags options, CFErrorRef *error);
+  /// ```
+  ///
+  /// More info: https://developer.apple.com/documentation/corefoundation/1429998-cfpropertylistcreatedata?language=objc
   static Pointer<IntPtr> _CFPropertyListCreateData(
       Pointer<IntPtr> cfPropertyList) {
     String cfPath =
@@ -115,6 +140,14 @@ class GetiDeviceInfo {
         nullptr, cfPropertyList, 200, nullptr, nullptr);
   }
 
+  /// Returns a read-only pointer to the bytes of a CFData object.
+  ///
+  /// Original(ObjC) Declaration:
+  /// ```objective-c
+  /// const UInt8 * CFDataGetBytePtr(CFDataRef theData);
+  /// ```
+  ///
+  /// More info: https://developer.apple.com/documentation/corefoundation/1543330-cfdatagetbyteptr?language=objc
   static Pointer<Uint8> _CFDataGetBytePtr(Pointer<IntPtr> cfData) {
     String cfPath =
         "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation";
@@ -127,6 +160,14 @@ class GetiDeviceInfo {
     return cfDataGetBytePtr(cfData);
   }
 
+  /// Returns the number of bytes contained by a CFData object.
+  ///
+  /// Original(ObjC) Declaration:
+  /// ```objective-c
+  /// CFIndex CFDataGetLength(CFDataRef theData);
+  /// ```
+  ///
+  /// More info: https://developer.apple.com/documentation/corefoundation/1541728-cfdatagetlength?language=objc
   static int _CFDataGetLength(Pointer<IntPtr> cfData) {
     String cfPath =
         "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation";
