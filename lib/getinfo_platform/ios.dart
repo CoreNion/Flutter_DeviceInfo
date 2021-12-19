@@ -19,9 +19,17 @@ class GetiDeviceInfo {
 
   static String osVersion() {
     if (_getMGCopyAnswerValue("DeviceClass") == "iPhone") {
-      return "iOS " + _getMGCopyAnswerValue("ProductVersion");
+      return "iOS " +
+          _getMGCopyAnswerValue("ProductVersion") +
+          " (" +
+          _getMGCopyAnswerValue("BuildVersion") +
+          ")";
     } else if (_getMGCopyAnswerValue("DeviceClass") == "iPad") {
-      return "iPadOS " + _getMGCopyAnswerValue("ProductVersion");
+      return "iPadOS " +
+          _getMGCopyAnswerValue("ProductVersion") +
+          " (" +
+          _getMGCopyAnswerValue("BuildVersion") +
+          ")";
     } else {
       return _getMGCopyAnswerValue("ProductVersion");
     }
