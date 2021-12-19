@@ -44,7 +44,49 @@ class GetiDeviceInfo {
   }
 
   static String cpuName() {
-    return "CPU Name Dummy";
+    // https://www.theiphonewiki.com/wiki/Application_Processor
+    switch (chipID()) {
+      case "s5l8960x":
+        return "Apple A7";
+      case "s5l8965x":
+        return "Apple A7 (iPad Air)";
+      case "t7000":
+        return "Apple A8";
+      case "s8000":
+        return "Apple A9 (Samsung)";
+      case "s8003":
+        return "Apple A9 (TSMC)";
+      case "s8001":
+        return "Apple A9X";
+      case "t8010":
+        return "Apple A10 Fusion";
+      case "t8015":
+        return "Apple A11 Bionic";
+      case "t8020":
+        return "Apple A12 Bionic";
+      case "t8027":
+        // According to chip id, A12Z is exactly the same as A12X lol.
+        String board = boardName();
+        if (board == "J420AP" || board == "J421AP") {
+          return "Apple A12Z Bionic";
+        } else {
+          return "Apple A12X Bionic";
+        }
+      case "t8030":
+        return "Apple A13 Bionic";
+      case "t8101":
+        return "Apple A14 Bionic";
+      case "t8103":
+        return "Apple M1";
+      case "t8110":
+        return "Apple A15 Bionic";
+      case "t6000":
+        return "Apple M1 Pro";
+      case "t6001":
+        return "Apple M1 Max";
+      default:
+        return "Unknown";
+    }
   }
 
   static String cpuArch() {
