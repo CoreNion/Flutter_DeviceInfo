@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
 import 'package:propertylistserialization/propertylistserialization.dart';
+import 'package:filesize/filesize.dart';
 
 class GetiDeviceInfo {
   static String modelName() {
@@ -35,11 +36,11 @@ class GetiDeviceInfo {
   }
 
   static String boardName() {
-    return "Board Name Dummy";
+    return _getSysctlValue("hw.model", false);
   }
 
   static String kernelVersion() {
-    return "Kernel Version Dummy";
+    return _getSysctlValue("kern.version", false);
   }
 
   static String cpuName() {
@@ -51,7 +52,7 @@ class GetiDeviceInfo {
   }
 
   static String cpuCores() {
-    return "CPU Cores Dummy";
+    return _getSysctlValue("hw.physicalcpu_max", true);
   }
 
   static String chipID() {
@@ -59,7 +60,7 @@ class GetiDeviceInfo {
   }
 
   static String totalMemoryMB() {
-    return "Total Memory Dummy MB";
+    return filesize(_getSysctlValue("hw.memsize", true)).toString();
   }
 
   static String gpuName() {
@@ -83,6 +84,26 @@ class GetiDeviceInfo {
     // At last. After serialization binary plist, we can get Chip ID.
     return PropertyListSerialization.propertyListWithData(answerByteData)
         as String;
+  }
+
+  /// Get value from sysctl.
+  static String _getSysctlValue(String name, bool isValueInt) {
+    // size_t size;
+    final oldlenp = malloc<Int64>();
+    _sysctlbyname(name.toNativeUtf8(), nullptr, oldlenp);
+    // char *machine = malloc(size);
+    final oldp = malloc<Int8>(oldlenp.value);
+    _sysctlbyname(name.toNativeUtf8(), oldp, oldlenp);
+    String value;
+    if (isValueInt) {
+      value = oldp.cast<Int64>().value.toString();
+    } else {
+      value = oldp.cast<Utf8>().toDartString();
+    }
+
+    malloc.free(oldlenp);
+    malloc.free(oldp);
+    return value;
   }
 
   /// Get more detailed information value about the device from private library.
@@ -188,5 +209,27 @@ class GetiDeviceInfo {
     final cfDataGetLength =
         CFDataGetLength.asFunction<int Function(Pointer<IntPtr>)>();
     return cfDataGetLength(cfData);
+  }
+
+  /// Gets or sets information about the system and environment.
+  ///
+  /// Original(ObjC) Declaration:
+  /// ```objective-c
+  /// int sysctlbyname(const char *, void *, size_t *, void *, size_t);
+  /// ```
+  ///
+  /// More info: https://developer.apple.com/documentation/kernel/1387446-sysctlbyname
+  static int _sysctlbyname(
+      Pointer<Utf8> name, Pointer<Int8> oldp, Pointer<Int64> oldlenp) {
+    String libSysPath = "/usr/lib/libSystem.dylib";
+    final libSys = DynamicLibrary.open(libSysPath);
+    final sysctlbyname = libSys.lookup<
+        NativeFunction<
+            Int32 Function(Pointer<Utf8>, Pointer<Int8>, Pointer<Int64>,
+                Pointer<IntPtr>, Int64)>>('sysctlbyname');
+    final sysctlByname = sysctlbyname.asFunction<
+        int Function(Pointer<Utf8>, Pointer<Int8>, Pointer<Int64>,
+            Pointer<IntPtr>, int)>();
+    return sysctlByname(name, oldp, oldlenp, nullptr, 0);
   }
 }

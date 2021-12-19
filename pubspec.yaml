@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   ffi: ^1.1.2
   propertylistserialization: ^1.1.0
+  filesize: ^2.0.1
 
 dev_dependencies:
   flutter_test:
