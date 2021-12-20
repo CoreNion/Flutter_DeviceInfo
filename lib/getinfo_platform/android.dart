@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
+import 'package:filesize/filesize.dart';
 
 class GetDroidDeviceInfo {
   static String modelName() {
@@ -49,7 +50,8 @@ class GetDroidDeviceInfo {
   }
 
   static String cpuCores() {
-    return "CPU Cores Dummy";
+    // 0x0060 = _SC_NPROCESSORS_CONF
+    return _sysconf(0x0060).toString();
   }
 
   static String chipID() {
@@ -57,7 +59,8 @@ class GetDroidDeviceInfo {
   }
 
   static String totalMemoryMB() {
-    return "Total Memory Dummy MB";
+    // _SC_PHYS_PAGES(0x0062) * _SC_PAGE_SIZE(0x0028)
+    return filesize(_sysconf(0x0062) * _sysconf(0x0028)).toString();
   }
 
   static String gpuName() {
@@ -96,5 +99,26 @@ class GetDroidDeviceInfo {
     String value = pointer.cast<Utf8>().toDartString();
     calloc.free(pointer);
     return value;
+  }
+
+  /// Get configuration information at run time. (libc)
+  ///
+  /// header: https://android.googlesource.com/platform/bionic/+/refs/tags/android-12.0.0_r21/libc/include/bits/sysconf.h
+  ///
+  /// man page: https://man7.org/linux/man-pages/man3/sysconf.3.html
+  static int _sysconf(int value) {
+    String soPath = "";
+    if (File("/system/lib64/libc.so").existsSync()) {
+      soPath = "/system/lib64/libc.so";
+    } else {
+      soPath = "/system/lib/libc.so";
+    }
+    final libc = DynamicLibrary.open(soPath);
+
+    final _sysconf =
+        libc.lookup<NativeFunction<Int32 Function(Int32)>>('sysconf');
+    final sysconf = _sysconf.asFunction<int Function(int)>();
+
+    return sysconf(value);
   }
 }
