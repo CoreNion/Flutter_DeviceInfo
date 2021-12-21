@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:convert';
 import 'package:ffi/ffi.dart';
 import 'package:filesize/filesize.dart';
 
@@ -38,7 +39,36 @@ class GetDroidDeviceInfo {
   }
 
   static String kernelVersion() {
-    return "Kernel Version Dummy";
+    Pointer<_utsname> uts = malloc<_utsname>();
+    _uname(uts);
+
+    // Kernel OS name (e.x. Linux)
+    Array<Int8> sysname = uts.ref.sysname;
+    // Kernel release (e.x. 5.4.86-qgki-g481f7eca2ed5)
+    Array<Int8> release = uts.ref.release;
+    // Kernel version (e.x. #1 SMP PREEMPT Wed Oct 27 15:02:49 CST 2021)
+    Array<Int8> version = uts.ref.version;
+    // Kernel architecture (e.x. aarch64)
+    Array<Int8> machine = uts.ref.machine;
+
+    malloc.free(uts);
+
+    // Array<Int8> to List<int>
+    String aint8ToString(Array<Int8> aInt8) {
+      List<int> list = [];
+      for (var i = 0; i < 65; i++) {
+        list.add(aInt8[i]);
+      }
+      return utf8.decode(list);
+    }
+
+    return aint8ToString(sysname) +
+        " " +
+        aint8ToString(release) +
+        "\n" +
+        aint8ToString(version) +
+        " " +
+        aint8ToString(machine);
   }
 
   static String cpuName() {
@@ -121,4 +151,51 @@ class GetDroidDeviceInfo {
 
     return sysconf(value);
   }
+
+  /// Get name and information about current kernel. (libc)
+  ///
+  /// header: https://android.googlesource.com/platform/bionic/+/refs/tags/android-12.0.0_r21/libc/include/sys/utsname.h
+  ///
+  /// man page: https://man7.org/linux/man-pages/man2/uname.2.html
+  static int _uname(Pointer<_utsname> value) {
+    String soPath = "";
+    if (File("/system/lib64/libc.so").existsSync()) {
+      soPath = "/system/lib64/libc.so";
+    } else {
+      soPath = "/system/lib/libc.so";
+    }
+    final libc = DynamicLibrary.open(soPath);
+
+    final _sysconf =
+        libc.lookup<NativeFunction<Int32 Function(Pointer<_utsname>)>>('uname');
+    final sysconf = _sysconf.asFunction<int Function(Pointer<_utsname>)>();
+
+    return sysconf(value);
+  }
+}
+
+class _utsname extends Struct {
+  // char sysname[SYS_NMLN(65)];
+  @Array(65)
+  external Array<Int8> sysname;
+
+  // char nodename[SYS_NMLN(65)];
+  @Array(65)
+  external Array<Int8> nodename;
+
+  // char release[SYS_NMLN(65)];
+  @Array(65)
+  external Array<Int8> release;
+
+  // char version[SYS_NMLN(65)];
+  @Array(65)
+  external Array<Int8> version;
+
+  // char machine[SYS_NMLN(65)];
+  @Array(65)
+  external Array<Int8> machine;
+
+  // char domainanme[SYS_NMLN(65)];
+  @Array(65)
+  external Array<Int8> domainanme;
 }
