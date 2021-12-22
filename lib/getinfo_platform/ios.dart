@@ -3,11 +3,11 @@ import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
 import 'package:propertylistserialization/propertylistserialization.dart';
 import 'package:filesize/filesize.dart';
+import 'package:ios_utsname_ext/extension.dart';
 
 class GetiDeviceInfo {
   static String modelName() {
-    // 仮 tentative
-    return _getMGCopyAnswerValue("DeviceName");
+    return _getMGCopyAnswerValue("HWModelStr").iOSProductName;
   }
 
   static String modelNumber() {

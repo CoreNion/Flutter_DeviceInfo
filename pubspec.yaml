@@ -37,6 +37,7 @@ dependencies:
   ffi: ^1.1.2
   propertylistserialization: ^1.1.0
   filesize: ^2.0.1
+  ios_utsname_ext: ^2.1.0
 
 dev_dependencies:
   flutter_test:
