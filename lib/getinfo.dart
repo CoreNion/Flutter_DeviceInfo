@@ -122,7 +122,7 @@ class GetDeviceInfo {
       return "Unsupported OS";
     }
   }
-
+  /* 
   static String gpuName() {
     if (Platform.isAndroid) {
       return GetDroidDeviceInfo.gpuName();
@@ -131,5 +131,5 @@ class GetDeviceInfo {
     } else {
       return "Unsupported OS";
     }
-  }
+  } */
 }

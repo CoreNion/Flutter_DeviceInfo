@@ -165,9 +165,10 @@ class GetDroidDeviceInfo {
     return filesize(_sysconf(0x0062) * _sysconf(0x0028)).toString();
   }
 
+  /* 
   static String gpuName() {
-    return "GPU Name Dummy";
-  }
+    return "";
+  } */
 
   /// Get system property(build.prop)'s value.
   ///

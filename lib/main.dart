@@ -242,6 +242,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ))
         ],
       ),
+      /* 
       // GPU Name
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,6 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ))
         ],
       ),
+      */
     ],
   ];
 

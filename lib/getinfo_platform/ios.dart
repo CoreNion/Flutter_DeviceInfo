@@ -116,9 +116,10 @@ class GetiDeviceInfo {
     return filesize(_getSysctlValue("hw.memsize", true)).toString();
   }
 
+  /* 
   static String gpuName() {
     return "GPU Name Dummy";
-  }
+  } */
 
   /// Functions for handling MGCopyAnswer with dart。
   static String _getMGCopyAnswerValue(String property) {
