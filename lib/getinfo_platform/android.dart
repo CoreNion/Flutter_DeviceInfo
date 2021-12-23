@@ -3,6 +3,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:ffi/ffi.dart';
 import 'package:filesize/filesize.dart';
+import 'dart:async';
+import 'dart:io';
 
 class GetDroidDeviceInfo {
   static String modelName() {
@@ -72,7 +74,28 @@ class GetDroidDeviceInfo {
   }
 
   static String cpuName() {
-    return "CPU Name Dummy";
+    final List<String> cpuinfo = File('/proc/cpuinfo').readAsLinesSync();
+    // Extract each value in cpuinfo
+    if (cpuinfo.indexWhere((line) => line.startsWith("model name")) != -1) {
+      // x86
+      String line =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("model name"))];
+      return line.substring(line.indexOf(":") + 2);
+    } else if (cpuinfo.indexWhere((line) => line.startsWith("Hardware")) !=
+        -1) {
+      // Arm (SoC)
+      String line =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("Hardware"))];
+      return line.substring(line.indexOf(":") + 2);
+    } else if (cpuinfo.indexWhere((line) => line.startsWith("Processor")) !=
+        -1) {
+      // Arm
+      String line =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("Processor"))];
+      return line.substring(line.indexOf(":") + 2);
+    } else {
+      return "Unknown";
+    }
   }
 
   static String cpuArch() {
@@ -85,7 +108,53 @@ class GetDroidDeviceInfo {
   }
 
   static String chipID() {
-    return "Chip ID Dummy";
+    final List<String> cpuinfo = File('/proc/cpuinfo').readAsLinesSync();
+    String vendor = "vendor id : Unknown";
+    String cpuid = "cpuid : Unknown";
+
+    // Vendor id
+    if (cpuinfo.indexWhere((line) => line.startsWith("vendor_id")) != -1) {
+      // x86
+      String line =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("vendor_id"))];
+      vendor = "vendor_id : " + line.substring(line.indexOf(":") + 2);
+    } else if (cpuinfo
+            .indexWhere((line) => line.startsWith("CPU implementer")) !=
+        -1) {
+      // Arm
+      String line = cpuinfo[
+          cpuinfo.indexWhere((line) => line.startsWith("CPU implementer"))];
+      vendor = "implementer : " + line.substring(line.indexOf(":") + 2);
+    }
+
+    // CPU id
+    if (cpuinfo.indexWhere((line) => line.startsWith("cpu family")) != -1) {
+      // x86
+      String familyLine =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("cpu family"))];
+      String modelLine =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("model"))];
+
+      cpuid = "Family : " +
+          familyLine.substring(familyLine.indexOf(":") + 2) +
+          " Model : " +
+          modelLine.substring(modelLine.indexOf(":") + 2);
+    } else if (cpuinfo
+            .indexWhere((line) => line.startsWith("CPU implementer")) !=
+        -1) {
+      // arm
+      String ecorePartLine =
+          cpuinfo[cpuinfo.indexWhere((line) => line.startsWith("CPU part"))];
+      String pcorePartLine = cpuinfo[
+          cpuinfo.lastIndexWhere((line) => line.startsWith("CPU part"))];
+
+      cpuid = "port (Performance Core) : " +
+          pcorePartLine.substring(pcorePartLine.indexOf(":") + 2) +
+          "\nport (Efficiency Core) : " +
+          ecorePartLine.substring(ecorePartLine.indexOf(":") + 2);
+    }
+
+    return vendor + "\n" + cpuid;
   }
 
   static String totalMemoryMB() {
