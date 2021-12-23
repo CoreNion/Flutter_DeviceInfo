@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text(
-            "Resolution",
+            "Resolution (prediction)",
             style: TextStyle(fontSize: 20),
             textAlign: TextAlign.left,
           ),

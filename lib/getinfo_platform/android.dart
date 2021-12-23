@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:convert';
+import 'dart:ui';
 import 'package:ffi/ffi.dart';
 import 'package:filesize/filesize.dart';
 import 'dart:async';
@@ -29,11 +30,13 @@ class GetDroidDeviceInfo {
   }
 
   static String widthResolution() {
-    return "W Resolution Dummy";
+    // Incomplete, this size is the physical size of the Window.
+    return window.physicalSize.width.toString();
   }
 
   static String heightResolution() {
-    return "H Resolution Dummy";
+    // Incomplete, this size is the physical size of the Window.
+    return window.physicalSize.height.toString();
   }
 
   static String boardName() {

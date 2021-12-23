@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:typed_data';
+import 'dart:ui';
 import 'package:ffi/ffi.dart';
 import 'package:propertylistserialization/propertylistserialization.dart';
 import 'package:filesize/filesize.dart';
@@ -36,11 +37,13 @@ class GetiDeviceInfo {
   }
 
   static String widthResolution() {
-    return "W Resolution Dummy";
+    // Incomplete, this size is the physical size of the Window.
+    return window.physicalSize.width.toString();
   }
 
   static String heightResolution() {
-    return "H Resolution Dummy";
+    // Incomplete, this size is the physical size of the Window.
+    return window.physicalSize.height.toString();
   }
 
   static String boardName() {
