@@ -10,11 +10,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: DefaultTabController(
+    return MaterialApp(
+      home: const DefaultTabController(
         length: 2,
         child: MyHomePage(),
       ),
+      theme: ThemeData.light(),
+      darkTheme:
+          ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
+      themeMode: ThemeMode.system,
     );
   }
 }
