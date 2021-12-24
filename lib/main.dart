@@ -288,10 +288,25 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: _barTitle,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: pages[_selectedIndex],
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            // SingleChildScrollView for small screen devices.
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                // I want to spaceAround, so we set the minHight.
+                constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                    minWidth: constraints.minWidth),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: pages[_selectedIndex],
+                ),
+              ),
+            );
+          },
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
