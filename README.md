@@ -1,15 +1,12 @@
 # "Flutter based" DeviceInfo
-このプロジェクトは、**[DeviceInfo](https://github.com/CoreNion/DeviceInfo)をFlutterで書き直す**プロジェクトです！
+## Flutterで書き直された、[DeviceInfo](https://github.com/CoreNion/DeviceInfo)！
 
-## [現在開発中](https://github.com/CoreNion/Flutter_DeviceInfo/projects)...
+デバイスの詳細な情報を表示するアプリです！
 
-<br>
-<br>
+Android / iOS に対応！
 
-**以下 FlutterデフォルトのREADME.mdの説明**
-## flutter_deviceinfo
-
-A new Flutter project.
+### **スクリーンショット**
+<img src="https://user-images.githubusercontent.com/70258493/147361301-26a87ce3-cd26-4e47-8142-3cb28d235df2.jpg" width="300px">  <img src="https://user-images.githubusercontent.com/70258493/147361230-8143f5ea-bffa-453b-870c-85d330a303c7.PNG" width="300px">
 
 ### Getting Started
 
@@ -23,3 +20,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# LICENSE
+
+[MIT LICENSE](./LICENSE)
