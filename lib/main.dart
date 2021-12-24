@@ -291,6 +291,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: _barTitle,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.info),
+            onPressed: () => showAboutDialog(
+              context: context,
+              applicationName: 'Flutter DeviceInfo',
+              applicationVersion: '0.9.0',
+              applicationIcon: Image.asset(
+                'icon/appicon.png',
+                width: 70,
+                height: 70,
+              ),
+              applicationLegalese: 'Copyright (c) 2021 CoreNion',
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: LayoutBuilder(
