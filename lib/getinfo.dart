@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:flutter_deviceinfo/getinfo_platform/macos.dart';
+
 import 'getinfo_platform/ios.dart';
 import 'getinfo_platform/android.dart';
 
@@ -8,6 +10,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.modelName();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.modelName();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.modelName();
     } else {
       return "Unsupported OS";
     }
@@ -18,6 +22,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.modelNumber();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.modelNumber();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.modelNumber();
     } else {
       return "Unsupported OS";
     }
@@ -28,6 +34,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.osVersion();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.osVersion();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.osVersion();
     } else {
       return "Unsupported OS";
     }
@@ -38,6 +46,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.widthResolution();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.widthResolution();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.widthResolution();
     } else {
       return "Unsupported OS";
     }
@@ -48,6 +58,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.heightResolution();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.heightResolution();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.heightResolution();
     } else {
       return "Unsupported OS";
     }
@@ -58,6 +70,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.boardName();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.boardName();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.boardName();
     } else {
       return "Unsupported OS";
     }
@@ -68,6 +82,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.kernelVersion();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.kernelVersion();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.kernelVersion();
     } else {
       return "Unsupported OS";
     }
@@ -78,6 +94,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.cpuName();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.cpuName();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.cpuName();
     } else {
       return "Unsupported OS";
     }
@@ -88,6 +106,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.cpuArch();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.cpuArch();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.cpuArch();
     } else {
       return "Unsupported OS";
     }
@@ -98,6 +118,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.cpuCores();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.cpuCores();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.cpuCores();
     } else {
       return "Unsupported OS";
     }
@@ -108,6 +130,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.chipID();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.chipID();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.chipID();
     } else {
       return "Unsupported OS";
     }
@@ -118,6 +142,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.totalMemoryMB();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.totalMemoryMB();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.totalMemoryMB();
     } else {
       return "Unsupported OS";
     }
@@ -128,6 +154,8 @@ class GetDeviceInfo {
       return GetDroidDeviceInfo.gpuName();
     } else if (Platform.isIOS) {
       return GetiDeviceInfo.gpuName();
+    } else if (Platform.isMacOS) {
+      return GetMacInfo.gpuName();
     } else {
       return "Unsupported OS";
     }
